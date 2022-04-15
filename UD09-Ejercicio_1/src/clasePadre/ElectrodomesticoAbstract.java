@@ -1,5 +1,9 @@
 package clasePadre;
-
+/*
+ * @author: Octavio Bernal
+ * @version: 0.0.1
+ * @fecha: 15/04/2022
+ */
 public abstract class ElectrodomesticoAbstract {
 
 	/* Atributos de clase padre */
@@ -31,7 +35,7 @@ public abstract class ElectrodomesticoAbstract {
 	/* Constructor de clase completo */
 	public ElectrodomesticoAbstract(double precioBase, String color, char consumoEnergetico, double peso) {
 		this.precioBase = precioBase;
-		this.color = comprobarColor(color);
+		this.color = comprobarColor(color.toUpperCase());
 		this.consumoEnergetico = comprobarConsumoEnergetico(consumoEnergetico);
 		this.peso = peso;
 	}

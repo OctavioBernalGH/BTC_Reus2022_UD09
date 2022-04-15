@@ -1,9 +1,14 @@
 package clasesHijas;
 
 import clasePadre.ElectrodomesticoAbstract;
-
+/*
+ * @author: Octavio Bernal
+ * @version: 0.0.1
+ * @fecha: 15/04/2022
+ */
 public class Lavadora extends ElectrodomesticoAbstract {
 
+	double precioConsumo = 0;
 	private double carga;
 	private final double CARGA = 5;
 
@@ -29,18 +34,25 @@ public class Lavadora extends ElectrodomesticoAbstract {
 	public char comprobarConsumoEnergetico(char consumoEnergetico) {
 
 		if (consumoEnergetico == 'A' || consumoEnergetico == 'a') {
-			precioBase += 100;
+			precioConsumo += 100;
+			consumoEnergetico = 'A';
 		} else if (consumoEnergetico == 'B' || consumoEnergetico == 'b') {
-			precioBase += 80;
+			precioConsumo += 80;
+			consumoEnergetico = 'B';
 		} else if (consumoEnergetico == 'C' || consumoEnergetico == 'c') {
-			precioBase += 60;
+			precioConsumo += 60;
+			consumoEnergetico = 'C';
 		} else if (consumoEnergetico == 'D' || consumoEnergetico == 'd') {
-			precioBase += 50;
+			precioConsumo += 50;
+			consumoEnergetico = 'D';
 		} else if (consumoEnergetico == 'E' || consumoEnergetico == 'e') {
-			precioBase += 30;
+			precioConsumo += 30;
+			consumoEnergetico = 'E';
 		} else if (consumoEnergetico == 'F' || consumoEnergetico == 'f') {
-			precioBase += 10;
+			precioConsumo += 10;
+			consumoEnergetico = 'F';
 		} else {
+			precioConsumo = CONSUMO;
 			consumoEnergetico = CONSUMO;
 		}
 
@@ -51,18 +63,25 @@ public class Lavadora extends ElectrodomesticoAbstract {
 	@Override
 	public String comprobarColor(String color) {
 
-		if (color.toUpperCase() == "BLANCO") {
+		switch (color) {
+		case "BLANCO":
 			color = "BLANCO";
-		} else if (color.toUpperCase() == "NEGRO") {
-			color = "NEGRO";
-		} else if (color.toUpperCase() == "ROJO") {
+			break;
+		case "ROJO":
 			color = "ROJO";
-		} else if (color.toUpperCase() == "AZUL") {
+			break;
+		case "AZUL":
 			color = "AZUL";
-		} else if (color.toUpperCase() == "GRIS") {
+			break;
+		case "NEGRO":
+			color = "NEGRO";
+			break;
+		case "GRIS":
 			color = "GRIS";
-		} else {
-			color = COLOR;
+			break;
+		default:
+			color = "BLANCO";
+			break;
 		}
 
 		return color;
@@ -76,21 +95,27 @@ public class Lavadora extends ElectrodomesticoAbstract {
 	@Override
 	public double precioFinal() {
 
+		double precioTotal = 0;
+		double plusCarga = 0;
+		double plusPeso = 0;
+
 		if (carga > 30) {
-			precioBase *= 1.50;
+			plusCarga = precioBase * 1.50;
 		}
 
 		if (peso > 0 && peso < 20) {
-			precioBase += 10;
+			plusPeso = 10;
 		} else if (peso > 19 && peso < 50) {
-			precioBase += 50;
+			plusPeso += 50;
 		} else if (peso > 49 && peso < 80) {
-			precioBase += 80;
+			plusPeso += 80;
 		} else if (peso >= 80) {
-			precioBase += 100;
+			plusPeso += 100;
 		}
 
-		return precioBase;
+		precioTotal = precioBase + plusCarga + plusPeso + precioConsumo;
+
+		return precioTotal;
 	}
 
 	@Override
@@ -98,7 +123,5 @@ public class Lavadora extends ElectrodomesticoAbstract {
 		return "Lavadora [carga=" + carga + ", precioBase=" + precioBase + ", color=" + color + ", consumoEnergetico="
 				+ consumoEnergetico + ", peso=" + peso + "]";
 	}
-	
-	
 
 }
