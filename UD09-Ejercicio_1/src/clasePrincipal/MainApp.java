@@ -95,6 +95,8 @@ public class MainApp {
 		}
 
 		System.out.println("\nEl precio de todas las lavadoras es: " + precioTotalLavadoras);
+	
+		System.out.println("El precio total de los electrodomésticos es: " + (precioTotalLavadoras + precioTotalTelevisiones));
 	}
 
 }

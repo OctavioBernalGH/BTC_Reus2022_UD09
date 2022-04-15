@@ -23,10 +23,20 @@ public class Lavadora extends ElectrodomesticoAbstract {
 		this.carga = CARGA;
 	}
 
+	/* Constructor con todos los atributos de super clase y clase */
 	public Lavadora(double precioBase, String color, char consumoEnergetico, double peso, double carga) {
 		super(precioBase, color, consumoEnergetico, peso);
 		this.carga = CARGA;
 		precioFinal();
+	}
+	
+	/* Getters y setters */
+	public double getCarga() {
+		return carga;
+	}
+
+	public void setCarga(double carga) {
+		this.carga = carga;
 	}
 
 	/* Método comprobarConsumoEnergetico según eficiencia. Es abstracto. */
